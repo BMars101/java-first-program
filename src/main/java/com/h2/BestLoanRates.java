@@ -10,7 +10,7 @@ public class BestLoanRates {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your name");
         String name = scanner.nextLine();
-        System.out.println("Hello, " + name);
+        System.out.println("Hello " + name);
 
         System.out.println("Enter loan term (in years) ");
         int loanTermInYears = scanner.nextInt();

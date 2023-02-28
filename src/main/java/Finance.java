@@ -6,27 +6,17 @@ import com.h2.SavingsCalculator;
 
 public class Finance {
 
-    public final static String BEST_LOAN_RATES = "bestLoanRates";
+    public static final String BEST_LOAN_RATES = "bestLoanRates";
 
-    public final static String SAVINGS_CALCULATOR = "savingsCalculator";
+    public static final String SAVINGS_CALCULATOR = "savingsCalculator";
 
-    public final static String MORTGAGE_CALCULATOR = "mortgageCalculator";
+    public static final String MORTGAGE_CALCULATOR = "mortgageCalculator";
 
-    public static void main(String[] args){
-        String command = args[0];
-        if(!commandsToUsage.containsKey(command)){
-            System.out.println(command + ": command not found");
-            return;
-        };
-        boolean isValidCommand = validateCommandArguments(args);
-        if(!isValidCommand){
-            commandsToUsage.get(args[0]);
-            return;
-        }
-        executeCommand(command, Arrays.copyOfRange(args, 1, args.length));
-    }
 
-    public final static Map<String, String> commandsToUsage =  Map.of(BEST_LOAN_RATES, "usage: bestLoanRates", SAVINGS_CALCULATOR, "usage: savingsCalculator <credits separated by ','> <debits separated by ','>", MORTGAGE_CALCULATOR, "usage: mortgageCalculator <loanAmount> <termInYears> <annualRate>");
+    public static final Map<String, String> commandsToUsage =  Map.of(
+            BEST_LOAN_RATES, "usage: bestLoanRates",
+            SAVINGS_CALCULATOR, "usage: savingsCalculator <credits separated by ','> <debits separated by ','>",
+            MORTGAGE_CALCULATOR, "usage: mortgageCalculator <loanAmount> <termInYears> <annualRate>");
 
     private static boolean validateCommandArguments(String[] args){
         switch(args[0]){
@@ -58,5 +48,18 @@ public class Finance {
                 return;
         }
 
+    }
+    public static void main(String[] args){
+        String command = args[0];
+        if(!commandsToUsage.containsKey(command)){
+            System.out.println(command + ": command not found");
+            return;
+        }
+        boolean isValidCommand = validateCommandArguments(args);
+        if(!isValidCommand){
+            System.out.println(commandsToUsage.get(args[0]));
+            return;
+        }
+        executeCommand(command, Arrays.copyOfRange(args, 1, args.length));
     }
 }

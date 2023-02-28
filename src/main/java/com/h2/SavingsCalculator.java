@@ -46,13 +46,13 @@ public class SavingsCalculator {
         }
         return sum;
     }
-
     private static int remainingDaysInMonth(LocalDate date){
         YearMonth yearMonth = YearMonth.of(date.getYear(), date.getMonth());
         int totalDaysInMonth = yearMonth.lengthOfMonth();
         int remainingDays = totalDaysInMonth - date.getDayOfMonth();
         return remainingDays;
     }
+    //Returns the amount of savings or left over each month
     public float calculate() {
         return sumOfCredits() - sumOfDebits();
     }

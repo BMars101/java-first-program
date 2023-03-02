@@ -51,6 +51,7 @@ public class Finance {
     }
     public static void main(String[] args){
         String command = args[0];
+        System.out.println(command);
         if(!commandsToUsage.containsKey(command)){
             System.out.println(command + ": command not found");
             return;

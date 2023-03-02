@@ -1,35 +1,22 @@
 package com.h2;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SavingsCalculator {
     //Amount representing income
-    private float[] credits;
+    private ArrayList<Float> credits = new ArrayList<>();
     //Amount representing expenses
-    private float[] debits;
+    private ArrayList<Float> debits = new ArrayList<>();
 
-    public static void main(String[] args){
-        String[] creditsAsString = args[0].split(",");
-        String[] debitsAsString = args[1].split(",");
-        float[] credits = new float[creditsAsString.length];
-        for(int i = 0; i<creditsAsString.length; i++){
-            credits[i] = Float.parseFloat(creditsAsString[i]);
-        }
-        float[] debits = new float[debitsAsString.length];
-        for(int i = 0; i < debitsAsString.length; i++){
-            debits[i] = Float.parseFloat(debitsAsString[i]);
-        }
-
-        SavingsCalculator calculator = new SavingsCalculator(credits, debits);
-        float netSavings = calculator.calculate();
-
-        System.out.println("Net Savings = " + netSavings + ", remaining days in month = " + remainingDaysInMonth(LocalDate.now()));
-    }
-    public SavingsCalculator(float[] credits, float[] debits){
+    public SavingsCalculator(ArrayList credits, ArrayList debits){
         this.credits = credits;
         this.debits = debits;
     }
+    public SavingsCalculator(){}
 
     private float sumOfCredits(){
         float sum = 0.0f;
@@ -55,6 +42,39 @@ public class SavingsCalculator {
     //Returns the amount of savings or left over each month
     public float calculate() {
         return sumOfCredits() - sumOfDebits();
+    }
+
+    public ArrayList<Float> getCredits() {
+        return credits;
+    }
+
+    public void setCredits(ArrayList credits) {
+        this.credits = credits;
+    }
+
+    public ArrayList<Float> getDebits() {
+        return debits;
+    }
+
+    public void setDebits(ArrayList debits) {
+        this.debits = debits;
+    }
+
+    public static void main(String[] args){
+        SavingsCalculator savings = new SavingsCalculator();
+        Scanner input = new Scanner(System.in);
+        if (!input.equals(0)){
+            System.out.println("Enter a credit amount, if no more credits, enter '0': ");
+            Float newCredit = input.nextFloat();
+            savings.credits.add(newCredit);
+
+        } else if (input.equals(0)){
+            System.out.println("Enter a bill amount, if no more bills, enter '0'");
+        }
+
+
+        System.out.println(savings.getCredits());
+
     }
 
 }
